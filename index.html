@@ -12,23 +12,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1369891465350476');
-fbq('track', 'PageView');
-</script>
+<!-- Meta Pixel is loaded further down by the tracking script (loadMetaPixel),
+     so there's no separate init here — avoids a double PageView fire. -->
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1369891465350476&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Meta Pixel Code -->
 
 <style>
 :root{
@@ -380,7 +368,7 @@ body{
         <div class="confirm-panel" id="confirmPanel">
           <p>Please confirm before we let you in:<br><strong>Are you a woman looking for genuine work-from-home handwriting work?</strong></p>
           <button class="btn-confirm tg-join-btn" id="confirmBtn" type="button" disabled>Yes, take me to Telegram</button>
-          <p class="confirm-note">Checking a moment — one second…</p>
+          <p class="confirm-note" id="confirmNote">Checking a moment — one second…</p>
         </div>
 
         <a href="https://t.me/+brOadwln04c1YTg1" id="fallbackLink" class="fallback-link" rel="noopener">
@@ -432,203 +420,233 @@ body{
 </div>
 
 <script>
-  window.TG_CONFIG = {
-    pixelId: "1369891465350476",
-    telegramLink: "https://t.me/+brOadwln04c1YTg1",
-    eventName: "Lead",
-    minDwellTime: 3000,
-    requireInteraction: true,
-    redirectDelay: 350,
-    webhookUrl: null,
-    debug: false
-  };
+function showTab(id, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.info').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
 </script>
 
+<!-- ===================== GATE LOGIC (new — this was missing) ===================== -->
 <script>
-/**
- * UNIVERSAL TELEGRAM TRACKING SCRIPT (v2)
- * ----------------------------------------
- * Filters fake/bot clicks before they count as conversions,
- * and ensures genuine visitors reliably reach Telegram.
- *
- * This page adds a two-tap confirm gate on top of the base script:
- * tapping the main CTA reveals a confirm panel; the confirm button
- * (which carries the real pixel-fire + redirect logic) only becomes
- * clickable after a short delay + a human interaction is detected.
- * This filters bots and accidental/impatient clicks far better than
- * a single button ever can, and doubles as a gender self-select step.
- */
-(function () {
-  "use strict";
+(() => {
+  'use strict';
 
-  var CFG = Object.assign(
-    {
-      pixelId: "",
-      telegramLink: "",
-      eventName: "Lead",
-      minDwellTime: 3000,
-      requireInteraction: true,
-      redirectDelay: 350,
-      webhookUrl: null,
-      debug: false,
-    },
-    window.TG_CONFIG || {}
-  );
+  const GATE_ENABLE_DELAY_MS = 900; // "checking a moment" pause before confirmBtn becomes clickable
 
-  var pageLoadTime = Date.now();
-  var humanInteracted = false;
-  var hasFired = false;
-  var sessionKey = "tg_fired_" + (CFG.pixelId || "default");
-  var interactionEvents = ["mousemove", "touchstart", "scroll", "keydown", "pointerdown"];
+  document.addEventListener('DOMContentLoaded', function () {
+    const openGate = document.getElementById('openGate');
+    const confirmPanel = document.getElementById('confirmPanel');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const confirmNote = document.getElementById('confirmNote');
 
-  function log() {
-    if (CFG.debug && window.console) {
-      console.log.apply(console, ["[TGTrack]"].concat(Array.prototype.slice.call(arguments)));
-    }
-  }
+    if (!openGate || !confirmPanel || !confirmBtn) return;
 
-  function onInteract() {
-    humanInteracted = true;
-    interactionEvents.forEach(function (evt) {
-      window.removeEventListener(evt, onInteract);
+    openGate.addEventListener('click', function () {
+      // Show the confirm panel, hide/disable the first button so it can't be re-clicked
+      confirmPanel.classList.add('show');
+      openGate.style.display = 'none';
+
+      // Short "checking" pause, then enable the real join button
+      window.setTimeout(function () {
+        confirmBtn.disabled = false;
+        if (confirmNote) confirmNote.textContent = 'You are all set — tap below to join.';
+      }, GATE_ENABLE_DELAY_MS);
+
+      // Scroll the panel into view on small screens
+      confirmPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
-    log("human interaction detected");
-  }
-  interactionEvents.forEach(function (evt) {
-    window.addEventListener(evt, onInteract, { passive: true, once: false });
   });
-
-  function isLikelyBot() {
-    if (navigator.webdriver) return true;
-    var ua = navigator.userAgent || "";
-    if (/headless|phantomjs|puppeteer|selenium/i.test(ua)) return true;
-    return false;
-  }
-
-  function alreadyFiredThisSession() {
-    try {
-      return sessionStorage.getItem(sessionKey) === "1";
-    } catch (e) {
-      return hasFired;
-    }
-  }
-
-  function markFired() {
-    hasFired = true;
-    try {
-      sessionStorage.setItem(sessionKey, "1");
-    } catch (e) {}
-  }
-
-  function reportFiltered(reason) {
-    log("BLOCKED — reason:", reason);
-    if (CFG.webhookUrl) {
-      try {
-        fetch(CFG.webhookUrl, {
-          method: "POST",
-          keepalive: true,
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            type: "filtered_click",
-            reason: reason,
-            pixelId: CFG.pixelId,
-            dwell: Date.now() - pageLoadTime,
-            url: window.location.href,
-            ts: Date.now(),
-          }),
-        }).catch(function () {});
-      } catch (e) {}
-    }
-  }
-
-  function attemptJoin(evt) {
-    if (evt && evt.preventDefault) evt.preventDefault();
-
-    if (alreadyFiredThisSession()) {
-      log("duplicate click ignored (already fired this session)");
-      window.location.href = CFG.telegramLink;
-      return;
-    }
-
-    var dwell = Date.now() - pageLoadTime;
-
-    if (isLikelyBot()) {
-      reportFiltered("bot_signature");
-      return;
-    }
-    if (CFG.requireInteraction && !humanInteracted) {
-      reportFiltered("no_human_interaction");
-      return;
-    }
-    if (dwell < CFG.minDwellTime) {
-      reportFiltered("dwell_too_short:" + dwell + "ms");
-      return;
-    }
-
-    var eventId =
-      "tg_" + (CFG.pixelId || "px") + "_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
-
-    if (typeof fbq === "function") {
-      fbq("track", CFG.eventName, {}, { eventID: eventId });
-      log("fired", CFG.eventName, "eventID:", eventId);
-    } else {
-      log("fbq not found — pixel base code missing?");
-    }
-
-    markFired();
-
-    setTimeout(function () {
-      window.location.href = CFG.telegramLink;
-    }, CFG.redirectDelay);
-  }
-
-  function wireButtons() {
-    var buttons = document.querySelectorAll(".tg-join-btn");
-    buttons.forEach(function (btn) {
-      btn.addEventListener("click", attemptJoin);
-    });
-    log("wired", buttons.length, "join button(s)");
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", wireButtons);
-  } else {
-    wireButtons();
-  }
-
-  window.TGTrack = {
-    attemptJoin: attemptJoin,
-    config: CFG,
-  };
 })();
 </script>
 
+<!-- ===================== TRACKING SCRIPT (from gtm.html) ===================== -->
 <script>
-  // Confirm-gate UI logic (page-specific, sits on top of the universal script above)
-  (function () {
-    var openBtn = document.getElementById("openGate");
-    var panel = document.getElementById("confirmPanel");
-    var confirmBtn = document.getElementById("confirmBtn");
-    var fallback = document.getElementById("fallbackLink");
-    var GATE_DELAY = 1200; // ms — short human-pace delay before confirm is tappable
+(() => {
+  'use strict';
 
-    openBtn.addEventListener("click", function () {
-      panel.classList.add("show");
-      openBtn.style.display = "none";
-      setTimeout(function () {
-        confirmBtn.removeAttribute("disabled");
-        confirmBtn.textContent = "Yes, take me to Telegram";
-      }, GATE_DELAY);
+  const CONFIG = Object.freeze({
+    pixelId: '1369891465350476',
+    telegramUrl: 'https://t.me/+brOadwln04c1YTg1',
+    pageViewDelayMs: 3000,
+    passiveReaderDelayMs: 8000,
+    minimumClickTimeMs: 1000,
+    trackedRedirectDelayMs: 700,
+    fastRedirectDelayMs: 50,
+    pageViewSessionKey: 'workfromhome_qualified_page_view'
+  });
+
+  const pageOpenedAt = Date.now();
+
+  let pageViewTracked = false;
+  let leadTracked = false;
+  let navigationStarted = false;
+  let humanInteractionDetected = false;
+
+  function loadMetaPixel() {
+    const pixelGuardKey = `__workfromhomePixelInitialized_${CONFIG.pixelId}`;
+
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = true;
+      n.version = '2.0';
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = true;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+    if (window[pixelGuardKey]) return;
+
+    let pixelAlreadyRegistered = false;
+    try {
+      if (typeof fbq.getState === 'function') {
+        const pixelState = fbq.getState();
+        pixelAlreadyRegistered = pixelState.pixels.some((pixel) =>
+          String(pixel.id) === String(CONFIG.pixelId)
+        );
+      }
+    } catch (error) {
+      pixelAlreadyRegistered = false;
+    }
+
+    if (!pixelAlreadyRegistered) {
+      fbq('init', CONFIG.pixelId);
+    }
+
+    window[pixelGuardKey] = true;
+  }
+
+  function sessionPageViewExists() {
+    try {
+      return sessionStorage.getItem(CONFIG.pageViewSessionKey) === 'true';
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function saveSessionPageView() {
+    try {
+      sessionStorage.setItem(CONFIG.pageViewSessionKey, 'true');
+    } catch (error) {
+      // ignore
+    }
+  }
+
+  function automationDetected() {
+    return navigator.webdriver === true;
+  }
+
+  function tryQualifiedPageView() {
+    const timeOnPageMs = Date.now() - pageOpenedAt;
+    const interactionQualified =
+      humanInteractionDetected && timeOnPageMs >= CONFIG.pageViewDelayMs;
+    const passiveReaderQualified = timeOnPageMs >= CONFIG.passiveReaderDelayMs;
+
+    const canTrack =
+      !pageViewTracked &&
+      !sessionPageViewExists() &&
+      !automationDetected() &&
+      (interactionQualified || passiveReaderQualified) &&
+      document.visibilityState === 'visible' &&
+      document.hasFocus() &&
+      typeof window.fbq === 'function';
+
+    if (!canTrack) return;
+
+    fbq('track', 'PageView', {
+      qualified_view: true,
+      human_interaction: humanInteractionDetected,
+      qualification: interactionQualified ? 'interaction_3_seconds' : 'focused_8_seconds',
+      time_on_page: Math.round(timeOnPageMs / 1000)
     });
 
-    // Show manual fallback link a few seconds after confirm, in case redirect
-    // is blocked by a browser popup/redirect guard.
-    confirmBtn.addEventListener("click", function () {
-      setTimeout(function () {
-        fallback.classList.add("show");
-      }, 2500);
+    pageViewTracked = true;
+    saveSessionPageView();
+  }
+
+  function recordHumanInteraction(event) {
+    if (!event.isTrusted || humanInteractionDetected) return;
+    humanInteractionDetected = true;
+    tryQualifiedPageView();
+  }
+
+  function initializeVisitorQualification() {
+    ['pointerdown', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach((eventName) => {
+      window.addEventListener(eventName, recordHumanInteraction, { passive: true, once: true });
     });
-  })();
+
+    window.setTimeout(tryQualifiedPageView, CONFIG.pageViewDelayMs);
+    window.setTimeout(tryQualifiedPageView, CONFIG.passiveReaderDelayMs);
+  }
+
+  function handleTelegramClick(event) {
+    event.preventDefault();
+
+    if (navigationStarted) return;
+    navigationStarted = true;
+
+    const timeOnPageMs = Date.now() - pageOpenedAt;
+    const isQualifiedClick =
+      event.isTrusted &&
+      !automationDetected() &&
+      timeOnPageMs >= CONFIG.minimumClickTimeMs;
+
+    if (isQualifiedClick && !leadTracked && typeof window.fbq === 'function') {
+      fbq('track', 'Lead', {
+        value: 0,
+        currency: 'INR',
+        destination: 'Telegram',
+        time_on_page: Math.round(timeOnPageMs / 1000)
+      });
+      leadTracked = true;
+    }
+
+    const redirectDelay = isQualifiedClick
+      ? CONFIG.trackedRedirectDelayMs
+      : CONFIG.fastRedirectDelayMs;
+
+    window.setTimeout(() => {
+      window.location.assign(CONFIG.telegramUrl);
+    }, redirectDelay);
+
+    // Safety net: agar kisi wajah se redirect na ho, thodi der baad
+    // manual fallback link dikha do (design mein already .show class hai)
+    window.setTimeout(() => {
+      const fallbackLink = document.getElementById('fallbackLink');
+      if (fallbackLink) fallbackLink.classList.add('show');
+    }, redirectDelay + 600);
+  }
+
+  function initializeTelegramButtons() {
+    // .tg-join-btn added here — confirmBtn uses that class, not join-link/jnBtn
+    const buttons = document.querySelectorAll('.join-link, .jnBtn, .tg-join-btn');
+    buttons.forEach((button) => {
+      if (button.tagName === 'A') button.href = CONFIG.telegramUrl;
+      button.addEventListener('click', handleTelegramClick);
+    });
+
+    const fallbackLink = document.getElementById('fallbackLink');
+    if (fallbackLink) fallbackLink.href = CONFIG.telegramUrl;
+  }
+
+  loadMetaPixel();
+  initializeVisitorQualification();
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeTelegramButtons, { once: true });
+  } else {
+    initializeTelegramButtons();
+  }
+})();
 </script>
 
 </body>
