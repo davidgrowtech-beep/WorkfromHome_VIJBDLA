@@ -1,653 +1,245 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Alpha Book Publications — Work From Home Handwriting Jobs for Women</title>
-
-<meta property="og:title" content="Alpha Book Publications — WFH Handwriting Jobs">
-<meta property="og:description" content="A supportive work-from-home community for women. Handwriting assignments, flexible hours.">
-<meta property="og:type" content="website">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
-
-<!-- Meta Pixel is loaded further down by the tracking script (loadMetaPixel),
-     so there's no separate init here — avoids a double PageView fire. -->
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1369891465350476&ev=PageView&noscript=1"
-/></noscript>
-
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="A women-only community for practical work-from-home skills."><meta name="color-scheme" content="light">
+<title>Women Work Hub | Learn From Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=League+Spartan:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ivory:#FBF3E7;
-  --plum:#4A1F2E;
-  --rose:#D98C97;
-  --gold:#B8894A;
-  --blush:#F6E1E4;
-  --ink:#2B2320;
-  --line:#E4D3C4;
-}
-
-*{ margin:0; padding:0; box-sizing:border-box; }
-
-body{
-  background:var(--ivory);
-  color:var(--ink);
-  font-family:'Work Sans', sans-serif;
-  min-height:100vh;
-  -webkit-font-smoothing:antialiased;
-}
-
-.bg-texture{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  background:
-    radial-gradient(circle at 12% 8%, rgba(217,140,151,0.16), transparent 42%),
-    radial-gradient(circle at 88% 92%, rgba(184,137,74,0.14), transparent 46%),
-    var(--ivory);
-}
-
-.wrap{ max-width:440px; margin:0 auto; padding:0 20px 28px; }
-
-/* ---------- Hero ---------- */
-.hero{
-  padding:34px 20px 26px;
-  text-align:center;
-  position:relative;
-}
-
-.brand-logo{
-  width:68px;
-  height:68px;
-  border-radius:50%;
-  object-fit:cover;
-  display:block;
-  margin:0 auto 12px;
-  box-shadow:0 6px 18px rgba(74,31,46,0.22);
-  border:3px solid #fff;
-}
-
-.brand-mark{
-  font-family:'Caveat', cursive;
-  font-size:19px;
-  color:var(--gold);
-  letter-spacing:0.3px;
-}
-
-.brand-name{
-  font-family:'Fraunces', serif;
-  font-weight:700;
-  font-size:26px;
-  color:var(--plum);
-  margin-top:2px;
-  line-height:1.15;
-}
-
-.hero-headline{
-  font-family:'Fraunces', serif;
-  font-weight:600;
-  font-size:29px;
-  line-height:1.28;
-  color:var(--plum);
-  margin-top:22px;
-}
-
-.hero-sub{
-  margin-top:14px;
-  font-size:15px;
-  line-height:1.6;
-  color:#5A4A44;
-  max-width:360px;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-.for-women-pill{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  margin-top:18px;
-  background:var(--blush);
-  border:1px solid var(--rose);
-  color:var(--plum);
-  font-size:13px;
-  font-weight:600;
-  padding:7px 16px;
-  border-radius:999px;
-}
-
-.torn-edge{
-  height:14px;
-  margin-top:26px;
-  background:
-    linear-gradient(135deg, var(--ivory) 50%, transparent 50%) 0 0/16px 16px repeat-x,
-    linear-gradient(-135deg, var(--ivory) 50%, transparent 50%) 0 0/16px 16px repeat-x;
-  background-color:var(--blush);
-}
-
-/* ---------- Notebook card ---------- */
-.notebook{
-  background:var(--blush);
-  border-radius:4px;
-  padding:22px 20px 20px;
-  position:relative;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 27px,
-    rgba(74,31,46,0.08) 28px
-  );
-}
-.notebook::before{
-  content:"";
-  position:absolute;
-  left:34px; top:0; bottom:0;
-  width:1px;
-  background:rgba(184,137,74,0.35);
-}
-.notebook-inner{ padding-left:16px; }
-
-.notebook-title{
-  font-family:'Fraunces', serif;
-  font-weight:600;
-  font-size:18px;
-  color:var(--plum);
-  margin-bottom:12px;
-}
-
-/* ---------- Stats ---------- */
-.stats{ display:flex; gap:10px; margin:20px 0 6px; }
-.stat{
-  flex:1;
-  background:#fff;
-  border:1px solid var(--line);
-  padding:14px 8px;
-  border-radius:12px;
-  text-align:center;
-}
-.stat .num{ font-family:'Fraunces', serif; font-weight:700; font-size:19px; color:var(--gold); }
-.stat .label{ font-size:10.5px; color:#7A6960; margin-top:3px; line-height:1.3; }
-
-/* ---------- CTA ---------- */
-.cta-zone{ margin-top:24px; }
-
-.btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  width:100%;
-  padding:16px;
-  background:linear-gradient(90deg, #8C3B4F 0%, var(--plum) 100%);
-  color:#FBF3E7;
-  text-align:center;
-  text-decoration:none;
-  border-radius:12px;
-  font-weight:600;
-  font-size:15.5px;
-  font-family:'Work Sans', sans-serif;
-  border:none;
-  cursor:pointer;
-  box-shadow:0 10px 26px rgba(74,31,46,0.28);
-  transition:transform 0.15s, box-shadow 0.15s;
-}
-.btn:active{ transform:scale(0.97); }
-
-.btn-sub{
-  text-align:center;
-  font-size:11.5px;
-  color:#8A776E;
-  margin-top:9px;
-}
-
-/* Confirm gate */
-.confirm-panel{
-  display:none;
-  margin-top:14px;
-  background:#fff;
-  border:1px dashed var(--rose);
-  border-radius:12px;
-  padding:16px;
-  text-align:center;
-}
-.confirm-panel.show{ display:block; animation:reveal 0.25s ease; }
-@keyframes reveal{ from{ opacity:0; transform:translateY(-6px);} to{ opacity:1; transform:translateY(0);} }
-
-.confirm-panel p{
-  font-size:13.5px;
-  color:var(--ink);
-  line-height:1.5;
-  margin-bottom:12px;
-}
-.confirm-panel strong{ color:var(--plum); }
-
-.btn-confirm{
-  display:block;
-  width:100%;
-  padding:13px;
-  background:var(--gold);
-  color:#fff;
-  border:none;
-  border-radius:10px;
-  font-weight:600;
-  font-size:14.5px;
-  font-family:'Work Sans', sans-serif;
-  cursor:pointer;
-}
-.btn-confirm[disabled]{ opacity:0.55; cursor:not-allowed; }
-
-.confirm-note{
-  margin-top:8px;
-  font-size:11px;
-  color:#9A8A80;
-}
-
-.fallback-link{
-  display:none;
-  text-align:center;
-  font-size:12px;
-  color:#8C3B4F;
-  margin-top:10px;
-  text-decoration:underline;
-}
-.fallback-link.show{ display:block; }
-
-/* ---------- How it works ---------- */
-.section-title{
-  font-family:'Fraunces', serif;
-  font-weight:600;
-  font-size:19px;
-  color:var(--plum);
-  margin:32px 0 14px;
-  text-align:center;
-}
-
-.steps{ display:flex; flex-direction:column; gap:10px; }
-.step{
-  display:flex;
-  gap:13px;
-  align-items:flex-start;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:14px;
-}
-.step-num{
-  flex-shrink:0;
-  width:26px; height:26px;
-  border-radius:50%;
-  background:var(--blush);
-  color:var(--plum);
-  font-family:'Fraunces', serif;
-  font-weight:700;
-  font-size:13px;
-  display:flex; align-items:center; justify-content:center;
-}
-.step-text{ font-size:13.5px; line-height:1.5; color:#4A3A34; }
-.step-text strong{ color:var(--plum); }
-
-/* ---------- Note ---------- */
-.handwritten-note{
-  margin-top:26px;
-  text-align:center;
-  font-family:'Caveat', cursive;
-  font-size:22px;
-  color:var(--gold);
-  line-height:1.4;
-}
-
-/* ---------- Legal ---------- */
-.legal{
-  margin-top:30px;
-  font-size:11px;
-  color:#9A8A80;
-  line-height:1.6;
-  text-align:center;
-  border-top:1px solid var(--line);
-  padding-top:20px;
-}
-.legal a{ color:#8A776E; text-decoration:underline; }
-.tabs{ display:flex; justify-content:center; gap:15px; margin-bottom:12px; }
-.tab{ font-size:12px; color:#9A8A80; cursor:pointer; border:none; background:none; font-family:inherit; font-weight:600; padding-bottom:2px; }
-.tab.active{ color:var(--gold); border-bottom:2px solid var(--gold); }
-.info{ display:none; text-align:left; padding:0 4px; }
-.info.active{ display:block; }
-
-@media (max-width:380px){
-  .hero-headline{ font-size:25px; }
-  .btn{ font-size:14px; padding:14px; }
-}
+:root{--paper:#fff8ed;--white:#fffdf9;--ink:#17233f;--muted:#687089;--coral:#ef6a5b;--sun:#ffc857;--aqua:#25a99a;--line:#eadfce;--shadow:0 24px 70px rgba(52,39,24,.14)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}a{color:inherit;text-decoration:none}body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 12% 8%,rgba(255,200,87,.28),transparent 27%),radial-gradient(circle at 90% 86%,rgba(37,169,154,.14),transparent 28%)}
+.page{width:min(1120px,calc(100% - 32px));margin:auto;position:relative;z-index:1}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:11px;font-family:"League Spartan",sans-serif;font-weight:800}.brand-mark{width:43px;height:43px;display:grid;place-items:center;border-radius:14px 14px 14px 5px;background:var(--ink);color:var(--sun);font-size:23px;box-shadow:5px 5px 0 var(--coral)}.brand small{display:block;margin-top:2px;color:var(--muted);font:600 11px "DM Sans",sans-serif;letter-spacing:.04em}
+.top-cta{display:inline-flex;align-items:center;gap:9px;padding:11px 16px;border:1px solid var(--ink);border-radius:12px;background:var(--white);font-size:13px;font-weight:700;box-shadow:4px 4px 0 var(--ink);transition:.18s}.top-cta:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 var(--ink)}.telegram{width:20px;height:20px;fill:#229ed9}
+.hero{overflow:hidden;display:grid;grid-template-columns:minmax(0,1.06fr) minmax(360px,.94fr);min-height:610px;background:var(--white);border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow)}.intro{position:relative;padding:64px 58px 50px;display:flex;flex-direction:column;justify-content:center}.intro:after{content:"";position:absolute;width:150px;height:150px;right:-74px;top:52px;border-radius:50%;background:var(--sun)}
+.eyebrow{display:inline-flex;align-items:center;align-self:flex-start;gap:8px;padding:8px 12px;border-radius:999px;background:#e6f7f4;color:#13796f;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--aqua);box-shadow:0 0 0 4px rgba(37,169,154,.12)}h1{max-width:620px;margin:24px 0 18px;font:800 clamp(48px,6vw,76px)/.91 "League Spartan",sans-serif;letter-spacing:-.045em}h1 span{display:block;color:var(--coral)}.intro>p{margin:0;color:var(--muted);font-size:16px;line-height:1.72}.trust{display:flex;flex-wrap:wrap;gap:9px;margin-top:23px}.trust span{padding:8px 11px;border:1px solid var(--line);border-radius:9px;background:#fff;font-size:12px;font-weight:700}
+.main-cta{display:flex;align-items:center;justify-content:center;gap:11px;width:100%;min-height:59px;margin-top:28px;padding:13px 18px;border-radius:14px;background:var(--ink);color:#fff;font-weight:800;box-shadow:0 12px 28px rgba(23,35,63,.24);transition:.18s}.main-cta:hover{transform:translateY(-2px);background:#223052}.main-cta .telegram{width:24px;height:24px;fill:#fff}.micro{text-align:center;margin-top:9px;color:#8b8490;font-size:12px}
+.studio{position:relative;padding:48px 40px;background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:center}.studio:before{content:"";position:absolute;inset:0;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px);background-size:28px 28px}.studio>*{position:relative}.studio-label{color:var(--sun);font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.studio h2{margin:10px 0 22px;font:700 32px/1.05 "League Spartan",sans-serif}.skills{display:grid;grid-template-columns:1fr 1fr;gap:12px}.skill{min-height:132px;padding:17px;border:1px solid rgba(255,255,255,.14);border-radius:16px;background:rgba(255,255,255,.07)}.skill:nth-child(2),.skill:nth-child(4){transform:translateY(15px)}.skill:nth-child(3){background:rgba(239,106,91,.18)}.skill:nth-child(4){background:rgba(37,169,154,.18)}.skill-icon{width:34px;height:34px;display:grid;place-items:center;margin-bottom:13px;border-radius:10px;background:var(--sun);color:var(--ink);font-size:17px;font-weight:800}.skill h3{margin:0 0 5px;font-size:15px}.skill p{margin:0;color:#c3c9d6;font-size:12px;line-height:1.5}.notice{margin-top:29px;padding:14px 16px;border-left:3px solid var(--sun);background:rgba(255,255,255,.07);color:#d9deea;font-size:12px;line-height:1.55}
+.footer{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 4px 30px;color:var(--muted);font-size:12px}.footer a{color:var(--ink);font-weight:700}.footer p{margin:0;max-width:700px;text-align:right;line-height:1.5}.floating{display:none;position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:18px;background:#229ed9;place-items:center;z-index:5;box-shadow:0 13px 30px rgba(34,158,217,.38)}.floating svg{width:27px;fill:#fff}
+@media(max-width:850px){.page{width:min(680px,calc(100% - 24px))}.hero{grid-template-columns:1fr}.intro{padding:48px 34px 40px}.intro:after{width:110px;height:110px;right:-55px;top:35px}.studio{padding:40px 34px 50px}.footer{align-items:flex-start;flex-direction:column}.footer p{text-align:left}.floating{display:grid}}@media(max-width:520px){.page{width:100%;padding:0 12px}.topbar{height:68px}.brand-mark{width:38px;height:38px}.brand small,.top-cta span{display:none}.top-cta{padding:9px}.hero{border-radius:22px;min-height:0}.intro{padding:38px 22px 32px}.intro:after{display:none}h1{font-size:50px}.intro>p{font-size:15px}.studio{padding:34px 22px 48px}.studio h2{font-size:28px}.skills{gap:9px}.skill{min-height:142px;padding:14px}.footer{padding-right:64px}.floating{right:14px;bottom:14px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.top-cta,.main-cta{transition:none}}
 </style>
 </head>
 <body>
-
-<div class="bg-texture"></div>
-
-<div class="wrap">
-
-  <div class="hero">
-    <img src="alpha-logo.png" alt="Alpha Book Publications" class="brand-logo">
-    <div class="brand-mark">est. for women who write</div>
-    <div class="brand-name">ALPHA BOOK PUBLICATIONS</div>
-
-    <h1 class="hero-headline">Turn your handwriting into a work-from-home income</h1>
-    <p class="hero-sub">Join our women's writing circle — copy manuscript pages by hand, on your own schedule, from anywhere.</p>
-
-    <div class="for-women-pill">♀ &nbsp;For Women-Girls only</div>
-  </div>
-
-  <div class="torn-edge"></div>
-
-  <div class="notebook">
-    <div class="notebook-inner">
-      <div class="notebook-title">Why women join us</div>
-
-      <div class="stats">
-        <div class="stat">
-          <div class="num">Flexible</div>
-          <div class="label">Work any hours that suit you</div>
-        </div>
-        <div class="stat">
-          <div class="num">Home</div>
-          <div class="label">No office, no commute</div>
-        </div>
-        <div class="stat">
-          <div class="num">Weekly</div>
-          <div class="label">Payment for completed pages</div>
-        </div>
-      </div>
-
-      <div class="cta-zone">
-        <button class="btn" id="openGate" type="button">
-          ✒️ Join Telegram Learning & Working Group
-        </button>
-        <p class="btn-sub">Free to join · Women only · Takes 10 seconds</p>
-
-        <div class="confirm-panel" id="confirmPanel">
-          <p>Please confirm before we let you in:<br><strong>Are you a woman looking for genuine work-from-home handwriting work?</strong></p>
-          <button class="btn-confirm tg-join-btn" id="confirmBtn" type="button" disabled>Yes, take me to Telegram</button>
-          <p class="confirm-note" id="confirmNote">Checking a moment — one second…</p>
-        </div>
-
-        <a href="https://t.me/+brOadwln04c1YTg1" id="fallbackLink" class="fallback-link" rel="noopener">
-          Not redirected? Tap here to join manually →
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-title">How it works</div>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-text"><strong>Join the Telegram group</strong> — meet the women's circle and see today's available pages.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-text"><strong>Pick an assignment</strong> — copy manuscript pages by hand, at your own pace.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-text"><strong>Submit and get paid</strong> — send completed pages and receive payment weekly.</div>
-    </div>
-  </div>
-
-  <p class="handwritten-note">"a page a day keeps the office away"</p>
-
-  <div class="legal">
-    <div class="tabs">
-      <button class="tab active" onclick="showTab('p', this)">Privacy Policy</button>
-      <button class="tab" onclick="showTab('d', this)">Disclaimer</button>
-      <button class="tab" onclick="showTab('t', this)">Terms</button>
-    </div>
-
-    <div class="info active" id="p">
-      We use Meta Pixel for analytics. We do not collect personal financial information on this page.<br>
-      Ads by <a href="https://t.me/srsagency">SRS Ads</a>
-    </div>
-
-    <div class="info" id="d">
-      <strong>Disclaimer:</strong> This is an independent work opportunity, not affiliated with any government scheme. All assignment details, rates, and terms are shared inside the Telegram group before you commit to any work.
-    </div>
-
-    <div class="info" id="t">
-      This opportunity is open to women aged 18+. By joining, you agree to the terms shared in the Telegram group.
-    </div>
-  </div>
-
+<div class="page">
+  <header class="topbar"><a class="brand" href="#home"><span class="brand-mark">W</span><span>WOMEN WORK HUB<small>LEARN · PREPARE · GROW</small></span></a><a class="top-cta telegram-join" href="https://t.me/+brOadwln04c1YTg1"><svg class="telegram" viewBox="0 0 24 24"><path d="M21.8 3.2 18.5 20c-.25 1.18-.91 1.47-1.85.92l-5.02-3.7-2.42 2.33c-.27.27-.49.49-1 .49l.36-5.12 9.31-8.41c.4-.36-.09-.56-.63-.2L5.75 13.55.8 12c-1.08-.34-1.1-1.08.22-1.6L20.4 2.93c.9-.33 1.69.2 1.4 1.27Z"/></svg><span>Join Telegram</span></a></header>
+  <main class="hero" id="home">
+    <section class="intro"><div class="eyebrow"><i></i>Women-only learning community</div><h1>Learn skills.<span>Work from home.</span></h1><p>Explore beginner-friendly skills for flexible home-based opportunities. Learn at your pace, improve your confidence and connect with a supportive women-focused community.</p><div class="trust"><span>✓ Beginner friendly</span><span>✓ Flexible learning</span><span>✓ Free community</span></div><a class="main-cta telegram-join" href="https://t.me/+brOadwln04c1YTg1"><svg class="telegram" viewBox="0 0 24 24"><path d="M21.8 3.2 18.5 20c-.25 1.18-.91 1.47-1.85.92l-5.02-3.7-2.42 2.33c-.27.27-.49.49-1 .49l.36-5.12 9.31-8.41c.4-.36-.09-.56-.63-.2L5.75 13.55.8 12c-1.08-.34-1.1-1.08.22-1.6L20.4 2.93c.9-.33 1.69.2 1.4 1.27Z"/></svg>Join the Women’s Community</a><div class="micro">Free access · Open in Telegram</div></section>
+    <section class="studio"><div class="studio-label">Your home skills studio</div><h2>Practical paths to explore</h2><div class="skills"><article class="skill"><div class="skill-icon">✎</div><h3>Handwriting Work</h3><p>Build neat writing, assignment and document-preparation skills.</p></article><article class="skill"><div class="skill-icon">⌨</div><h3>Typing &amp; Data Entry</h3><p>Improve accuracy and essential digital task skills.</p></article><article class="skill"><div class="skill-icon">Aa</div><h3>Content Support</h3><p>Explore captions, basic formatting and content assistance.</p></article><article class="skill"><div class="skill-icon">◎</div><h3>Digital Basics</h3><p>Understand online coordination and social media support.</p></article></div><div class="notice">Opportunities depend on skills and availability. No employment, placement or income is guaranteed. Never pay anyone promising guaranteed work.</div></section>
+  </main>
+  <footer class="footer"><a href="https://t.me/srsagency" target="_blank" rel="noopener">Advertised by SRS Marketing Agency</a><p>Educational and opportunity-awareness content only. Always verify any opportunity independently.</p></footer>
 </div>
-
+<a class="floating telegram-join" href="https://t.me/+brOadwln04c1YTg1" aria-label="Join on Telegram"><svg viewBox="0 0 24 24"><path d="M21.8 3.2 18.5 20c-.25 1.18-.91 1.47-1.85.92l-5.02-3.7-2.42 2.33c-.27.27-.49.49-1 .49l.36-5.12 9.31-8.41c.4-.36-.09-.56-.63-.2L5.75 13.55.8 12c-1.08-.34-1.1-1.08.22-1.6L20.4 2.93c.9-.33 1.69.2 1.4 1.27Z"/></svg></a>
 <script>
-function showTab(id, el) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.info').forEach(i => i.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById(id).classList.add('active');
-}
-</script>
+  (() => {
+    'use strict';
 
-<!-- ===================== GATE LOGIC (new — this was missing) ===================== -->
-<script>
-(() => {
-  'use strict';
 
-  const GATE_ENABLE_DELAY_MS = 900; // "checking a moment" pause before confirmBtn becomes clickable
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const openGate = document.getElementById('openGate');
-    const confirmPanel = document.getElementById('confirmPanel');
-    const confirmBtn = document.getElementById('confirmBtn');
-    const confirmNote = document.getElementById('confirmNote');
-
-    if (!openGate || !confirmPanel || !confirmBtn) return;
-
-    openGate.addEventListener('click', function () {
-      // Show the confirm panel, hide/disable the first button so it can't be re-clicked
-      confirmPanel.classList.add('show');
-      openGate.style.display = 'none';
-
-      // Short "checking" pause, then enable the real join button
-      window.setTimeout(function () {
-        confirmBtn.disabled = false;
-        if (confirmNote) confirmNote.textContent = 'You are all set — tap below to join.';
-      }, GATE_ENABLE_DELAY_MS);
-
-      // Scroll the panel into view on small screens
-      confirmPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-  });
-})();
-</script>
-
-<!-- ===================== TRACKING SCRIPT (from gtm.html) ===================== -->
-<script>
-(() => {
-  'use strict';
-
-  const CONFIG = Object.freeze({
-    pixelId: '1369891465350476',
+    const CONFIG = Object.freeze({
+       pixelId: '1369891465350476',
     telegramUrl: 'https://t.me/+brOadwln04c1YTg1',
-    pageViewDelayMs: 3000,
-    passiveReaderDelayMs: 8000,
-    minimumClickTimeMs: 1000,
-    trackedRedirectDelayMs: 700,
-    fastRedirectDelayMs: 50,
-    pageViewSessionKey: 'workfromhome_qualified_page_view'
-  });
+      pageViewDelayMs: 3000,
+      passiveReaderDelayMs: 8000,
+      minimumClickTimeMs: 3000,
+      trackedRedirectDelayMs: 700,
+      fastRedirectDelayMs: 50,
+      pageViewSessionKey: 'three_point_qualified_page_view'
+    });
 
-  const pageOpenedAt = Date.now();
+    const pageOpenedAt = Date.now();
 
-  let pageViewTracked = false;
-  let leadTracked = false;
-  let navigationStarted = false;
-  let humanInteractionDetected = false;
+    let pageViewTracked = false;
+    let leadTracked = false;
+    let navigationStarted = false;
+    let humanInteractionDetected = false;
 
-  function loadMetaPixel() {
-    const pixelGuardKey = `__workfromhomePixelInitialized_${CONFIG.pixelId}`;
+   
+    function loadMetaPixel() {
+      const pixelGuardKey =
+        `__threePointPixelInitialized_${CONFIG.pixelId}`;
 
-    !function (f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function () {
-        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-      };
-      if (!f._fbq) f._fbq = n;
-      n.push = n;
-      n.loaded = true;
-      n.version = '2.0';
-      n.queue = [];
-      t = b.createElement(e);
-      t.async = true;
-      t.src = v;
-      s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s);
-    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
 
-    if (window[pixelGuardKey]) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
 
-    let pixelAlreadyRegistered = false;
-    try {
-      if (typeof fbq.getState === 'function') {
-        const pixelState = fbq.getState();
-        pixelAlreadyRegistered = pixelState.pixels.some((pixel) =>
-          String(pixel.id) === String(CONFIG.pixelId)
-        );
+        if (!f._fbq) f._fbq = n;
+
+        n.push = n;
+        n.loaded = true;
+        n.version = '2.0';
+        n.queue = [];
+
+        t = b.createElement(e);
+        t.async = true;
+        t.src = v;
+
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      }(
+        window,
+        document,
+        'script',
+        'https://connect.facebook.net/en_US/fbevents.js'
+      );
+
+      if (window[pixelGuardKey]) return;
+
+      let pixelAlreadyRegistered = false;
+
+      try {
+        if (typeof fbq.getState === 'function') {
+          const pixelState = fbq.getState();
+
+          pixelAlreadyRegistered = pixelState.pixels.some((pixel) =>
+            String(pixel.id) === String(CONFIG.pixelId)
+          );
+        }
+      } catch (error) {
+        pixelAlreadyRegistered = false;
       }
-    } catch (error) {
-      pixelAlreadyRegistered = false;
+
+      if (!pixelAlreadyRegistered) {
+        fbq('init', CONFIG.pixelId);
+      }
+
+      window[pixelGuardKey] = true;
     }
 
-    if (!pixelAlreadyRegistered) {
-      fbq('init', CONFIG.pixelId);
+    
+    function sessionPageViewExists() {
+      try {
+        return sessionStorage.getItem(CONFIG.pageViewSessionKey) === 'true';
+      } catch (error) {
+        return false;
+      }
     }
 
-    window[pixelGuardKey] = true;
-  }
-
-  function sessionPageViewExists() {
-    try {
-      return sessionStorage.getItem(CONFIG.pageViewSessionKey) === 'true';
-    } catch (error) {
-      return false;
+    function saveSessionPageView() {
+      try {
+        sessionStorage.setItem(CONFIG.pageViewSessionKey, 'true');
+      } catch (error) {
+        
+      }
     }
-  }
 
-  function saveSessionPageView() {
-    try {
-      sessionStorage.setItem(CONFIG.pageViewSessionKey, 'true');
-    } catch (error) {
-      // ignore
+    function automationDetected() {
+      return navigator.webdriver === true;
     }
-  }
 
-  function automationDetected() {
-    return navigator.webdriver === true;
-  }
+    function tryQualifiedPageView() {
+      const timeOnPageMs = Date.now() - pageOpenedAt;
+      const interactionQualified =
+        humanInteractionDetected &&
+        timeOnPageMs >= CONFIG.pageViewDelayMs;
+      const passiveReaderQualified =
+        timeOnPageMs >= CONFIG.passiveReaderDelayMs;
 
-  function tryQualifiedPageView() {
-    const timeOnPageMs = Date.now() - pageOpenedAt;
-    const interactionQualified =
-      humanInteractionDetected && timeOnPageMs >= CONFIG.pageViewDelayMs;
-    const passiveReaderQualified = timeOnPageMs >= CONFIG.passiveReaderDelayMs;
+      const canTrack =
+        !pageViewTracked &&
+        !sessionPageViewExists() &&
+        !automationDetected() &&
+        (interactionQualified || passiveReaderQualified) &&
+        document.visibilityState === 'visible' &&
+        document.hasFocus() &&
+        typeof window.fbq === 'function';
 
-    const canTrack =
-      !pageViewTracked &&
-      !sessionPageViewExists() &&
-      !automationDetected() &&
-      (interactionQualified || passiveReaderQualified) &&
-      document.visibilityState === 'visible' &&
-      document.hasFocus() &&
-      typeof window.fbq === 'function';
+      if (!canTrack) return;
 
-    if (!canTrack) return;
-
-    fbq('track', 'PageView', {
-      qualified_view: true,
-      human_interaction: humanInteractionDetected,
-      qualification: interactionQualified ? 'interaction_3_seconds' : 'focused_8_seconds',
-      time_on_page: Math.round(timeOnPageMs / 1000)
-    });
-
-    pageViewTracked = true;
-    saveSessionPageView();
-  }
-
-  function recordHumanInteraction(event) {
-    if (!event.isTrusted || humanInteractionDetected) return;
-    humanInteractionDetected = true;
-    tryQualifiedPageView();
-  }
-
-  function initializeVisitorQualification() {
-    ['pointerdown', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach((eventName) => {
-      window.addEventListener(eventName, recordHumanInteraction, { passive: true, once: true });
-    });
-
-    window.setTimeout(tryQualifiedPageView, CONFIG.pageViewDelayMs);
-    window.setTimeout(tryQualifiedPageView, CONFIG.passiveReaderDelayMs);
-  }
-
-  function handleTelegramClick(event) {
-    event.preventDefault();
-
-    if (navigationStarted) return;
-    navigationStarted = true;
-
-    const timeOnPageMs = Date.now() - pageOpenedAt;
-    const isQualifiedClick =
-      event.isTrusted &&
-      !automationDetected() &&
-      timeOnPageMs >= CONFIG.minimumClickTimeMs;
-
-    if (isQualifiedClick && !leadTracked && typeof window.fbq === 'function') {
-      fbq('track', 'Lead', {
-        value: 0,
-        currency: 'INR',
-        destination: 'Telegram',
+      fbq('track', 'PageView', {
+        qualified_view: true,
+        human_interaction: humanInteractionDetected,
+        qualification: interactionQualified
+          ? 'interaction_3_seconds'
+          : 'focused_8_seconds',
         time_on_page: Math.round(timeOnPageMs / 1000)
       });
-      leadTracked = true;
+
+      pageViewTracked = true;
+      saveSessionPageView();
     }
 
-    const redirectDelay = isQualifiedClick
-      ? CONFIG.trackedRedirectDelayMs
-      : CONFIG.fastRedirectDelayMs;
+    function recordHumanInteraction(event) {
+      if (!event.isTrusted || humanInteractionDetected) return;
 
-    window.setTimeout(() => {
-      window.location.assign(CONFIG.telegramUrl);
-    }, redirectDelay);
+      humanInteractionDetected = true;
+      tryQualifiedPageView();
+    }
 
-    // Safety net: agar kisi wajah se redirect na ho, thodi der baad
-    // manual fallback link dikha do (design mein already .show class hai)
-    window.setTimeout(() => {
-      const fallbackLink = document.getElementById('fallbackLink');
-      if (fallbackLink) fallbackLink.classList.add('show');
-    }, redirectDelay + 600);
-  }
+    function initializeVisitorQualification() {
+      ['pointerdown', 'touchstart', 'keydown', 'scroll', 'mousemove']
+        .forEach((eventName) => {
+          window.addEventListener(eventName, recordHumanInteraction, {
+            passive: true,
+            once: true
+          });
+        });
 
-  function initializeTelegramButtons() {
-    // .tg-join-btn added here — confirmBtn uses that class, not join-link/jnBtn
-    const buttons = document.querySelectorAll('.join-link, .jnBtn, .tg-join-btn');
-    buttons.forEach((button) => {
-      if (button.tagName === 'A') button.href = CONFIG.telegramUrl;
-      button.addEventListener('click', handleTelegramClick);
-    });
+      window.setTimeout(tryQualifiedPageView, CONFIG.pageViewDelayMs);
+      window.setTimeout(tryQualifiedPageView, CONFIG.passiveReaderDelayMs);
+    }
 
-    const fallbackLink = document.getElementById('fallbackLink');
-    if (fallbackLink) fallbackLink.href = CONFIG.telegramUrl;
-  }
+  
+    function handleTelegramClick(event) {
+      event.preventDefault();
 
-  loadMetaPixel();
-  initializeVisitorQualification();
+      if (navigationStarted) return;
+      navigationStarted = true;
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeTelegramButtons, { once: true });
-  } else {
-    initializeTelegramButtons();
-  }
-})();
+      const timeOnPageMs = Date.now() - pageOpenedAt;
+      const isQualifiedClick =
+        event.isTrusted &&
+        !automationDetected() &&
+        timeOnPageMs >= CONFIG.minimumClickTimeMs;
+
+      if (
+        isQualifiedClick &&
+        !leadTracked &&
+        typeof window.fbq === 'function'
+      ) {
+        fbq('track', 'Lead', {
+          value: 0,
+          currency: 'INR',
+          destination: 'Telegram',
+          time_on_page: Math.round(timeOnPageMs / 1000)
+        });
+
+        leadTracked = true;
+      }
+
+      const redirectDelay = isQualifiedClick
+        ? CONFIG.trackedRedirectDelayMs
+        : CONFIG.fastRedirectDelayMs;
+
+      window.setTimeout(() => {
+        window.location.assign(CONFIG.telegramUrl);
+      }, redirectDelay);
+    }
+
+    function initializeTelegramButtons() {
+      const buttons = document.querySelectorAll('.telegram-join');
+
+      buttons.forEach((button) => {
+        button.href = CONFIG.telegramUrl;
+        button.addEventListener('click', handleTelegramClick);
+      });
+    }
+
+  
+    loadMetaPixel();
+    initializeVisitorQualification();
+
+    if (document.readyState === 'loading') {
+      document.addEventListener(
+        'DOMContentLoaded',
+        initializeTelegramButtons,
+        { once: true }
+      );
+    } else {
+      initializeTelegramButtons();
+    }
+  })();
 </script>
-
 </body>
 </html>
